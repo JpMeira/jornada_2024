@@ -47,6 +47,14 @@ app.post('/dados', async (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.json({msg: "Sucesso"});
+});
+
+app.get("/teste", (req, res) => {
+  res.json({msg: "Teste!"});
+});
+
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
