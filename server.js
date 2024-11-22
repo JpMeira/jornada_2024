@@ -3,10 +3,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const mysql = require('mysql2/promise');
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'sensors'
+  host: 'database-octalab.cngqwss00euo.us-east-2.rds.amazonaws.com',
+  user: 'admin',
+  password: 'fastariam2024',
+  database: 'octaLab'
 });
 
 app.use(bodyParser.json());
