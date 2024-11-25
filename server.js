@@ -66,10 +66,8 @@ app.get("/teste", (req, res) => {
   res.json({msg: "Teste!"});
 });
 
-// Inicia o servidor e configura o timeout
+// Inicia o servidor
 const PORT = 5000;
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-server.setTimeout(5000); // 5 segundos de timeout para requisições HTTP
