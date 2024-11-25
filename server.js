@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mysql = require('mysql2/promise');
-const rateLimit = require('express-rate-limit');
-
 const pool = mysql.createPool({
   host: 'database-octalab.cngqwss00euo.us-east-2.rds.amazonaws.com',
   user: 'admin',
@@ -12,15 +10,6 @@ const pool = mysql.createPool({
 });
 
 app.use(bodyParser.json());
-
-// Configuração do rate limiting
-const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minuto
-  max: 100 // Limita cada IP a 100 requisições por minuto
-});
-
-// Aplica o rate limiting a todas as requisições
-app.use(limiter);
 
 app.post('/dados', async (req, res) => {
   const { sensor_id, temperatura, pressao } = req.body;
@@ -66,10 +55,7 @@ app.get("/teste", (req, res) => {
   res.json({msg: "Teste!"});
 });
 
-// Inicia o servidor e configura o timeout
 const PORT = 5000;
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-server.setTimeout(5000); // 5 segundos de timeout para requisições HTTP
